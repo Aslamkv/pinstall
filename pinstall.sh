@@ -1,8 +1,8 @@
 #!/bin/bash
-echo "Enter program name"
+echo "Enter shell script name"
 read file
 if [ ! -e $file ]; then
-  echo "Program not found!"
+  echo "Shell script not found!"
   exit;
 fi
 symlink=${file/\.sh/}
