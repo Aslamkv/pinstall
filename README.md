@@ -1,4 +1,4 @@
-# vh
+# pinstall
 Install shell scripts as programs on Ubuntu
 
 ### Installation
