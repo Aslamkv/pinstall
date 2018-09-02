@@ -7,8 +7,3 @@ Install shell scripts as programs on Ubuntu
 3. Type in pinstall.sh as the first shell script to install :smile:
 
 PS: You dont need the files listed here once you have installed pinstall, you can delete them :stuck_out_tongue:
-
-### Screenshots
-|![ Installing a shell script using pinstall ](https://raw.githubusercontent.com/Aslamkv/pinstall/master/install.png)|
-|:--:|
-| *Installing a shell script using pinstall* |
