@@ -45,7 +45,7 @@ remove (){
 
 args=$#
 if [  $args -lt 1 ]; then
-  echo "Usage\n"
+  echo "Usage"
   echo "Installation: pinstall <shell_file>"
   echo "List Installed scripts: pinstall -l"
   echo "Removal: pinstall -r <shell_file>"
