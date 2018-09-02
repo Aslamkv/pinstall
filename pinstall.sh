@@ -47,11 +47,11 @@ args=$#
 if [  $args -lt 1 ]; then
   echo "Usage"
   echo "Installation: pinstall <shell_file>"
-  echo "List Installed scripts: pinstall -l"
-  echo "Removal: pinstall -r <shell_file>"
+  echo "List Installed scripts: pinstall list"
+  echo "Removal: pinstall remove <shell_file>"
   exit;
 fi
-if [ "$1" == "-r" ]; then
+if [ "$1" == "remove" ]; then
   file=$2
   symlink=${file/\.sh/}
   folder=".$symlink"
@@ -63,7 +63,7 @@ if [ "$1" == "-r" ]; then
   echo "Uninstalled $symlink"
   exit;
 fi
-if [ "$1" == "-l" ]; then
+if [ "$1" == "list" ]; then
   list=`ls /usr/bin/.[A-z]* 2> /dev/null | sed 's/\.sh$//g'`
   total=${#list}
   if [ $total -lt 1 ]; then
