@@ -64,7 +64,7 @@ if [ "$1" == "remove" ]; then
   exit;
 fi
 if [ "$1" == "list" ]; then
-  list=`ls /usr/bin/.[A-z]* 2> /dev/null | sed 's/\.sh$//g'`
+  list=`ls -d /usr/bin/.[A-z]* 2> /dev/null | sed 's/^.*\.//g' `
   total=${#list}
   if [ $total -lt 1 ]; then
     echo "No Installed scripts found"
