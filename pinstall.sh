@@ -4,7 +4,7 @@ bin_path=$HOME/.pinstall/
 if [ ! -d "$bin_path" ]; then
   mkdir $bin_path
   exists=`cat ~/.bashrc | grep .pinstall`
-  if [ -z "$a" ]; then
+  if [ -z "$exists" ]; then
     echo 'Adding path to bashrc'
     echo '' >> ~/.bashrc
     echo '#add pinstall bin path in $PATH' >> ~/.bashrc
