@@ -1,4 +1,18 @@
 #!/bin/bash
+bin_path=$HOME/.pinstall/
+
+if [ ! -d "$bin_path" ]; then
+  mkdir $bin_path
+  exists=`cat ~/.bashrc | grep .pinstall`
+  if [ -z "$a" ]; then
+    echo 'Adding path to bashrc'
+    echo '' >> ~/.bashrc
+    echo '#add pinstall bin path in $PATH' >> ~/.bashrc
+    echo "export PATH=\"\$PATH:\$HOME/.pinstall\"" >> ~/.bashrc
+    PATH="$PATH:$HOME/.pinstall"
+  fi
+fi
+
 file_exists (){
   file=$1
   if [ ! -e $file ]; then
@@ -16,14 +30,14 @@ install (){
 
   remove $folder $symlink
 
-  sudo chmod +x $file
-  sudo mkdir /usr/bin/$folder
-  sudo cp $file /usr/bin/$folder
+  chmod +x $file
+  mkdir $bin_path$folder
+  cp $file $bin_path$folder
   if ls *.conf 1> /dev/null 2>&1; then
     echo "Installing configurations"
-    for conf in *.conf; do sudo cp $conf /usr/bin/$folder ;done
+    for conf in *.conf; do cp $conf $bin_path$folder ;done
   fi
-  sudo ln -s /usr/bin/$folder/$file /usr/bin/$symlink
+  ln -s $bin_path$folder/$file $bin_path$symlink
   if [ $? -eq 0 ]; then
     echo "Installed $symlink :)"
   else
@@ -34,10 +48,10 @@ install (){
 remove (){
   folder=$1
   symlink=$2
-  if [ -d /usr/bin/$folder ]; then
+  if [ -d $bin_path$folder ]; then
     echo "Removing existing $symlink"
-    sudo rm -fr /usr/bin/$folder/
-    sudo rm -f /usr/bin/$symlink
+    rm -fr $bin_path$folder/
+    rm -f $bin_path$symlink
     return 0
   fi
   return 1
@@ -64,7 +78,7 @@ if [ "$1" == "remove" ]; then
   exit;
 fi
 if [ "$1" == "list" ]; then
-  list=`ls -d /usr/bin/.[A-z]* 2> /dev/null | sed 's/^.*\.//g' `
+  list=`ls -d $bin_path.[A-z]* 2> /dev/null | sed 's/^.*\.//g' `
   total=${#list}
   if [ $total -lt 1 ]; then
     echo "No Installed scripts found"
